@@ -1,0 +1,1 @@
+# AspNetCore.SQRS.Mediatr.Sample
