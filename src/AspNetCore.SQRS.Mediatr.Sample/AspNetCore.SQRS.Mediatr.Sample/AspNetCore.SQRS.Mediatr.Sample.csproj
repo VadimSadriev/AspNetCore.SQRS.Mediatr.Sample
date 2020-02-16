@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SQRS.Mediart.Sample.DAL\SQRS.Mediatr.Sample.DAL.csproj" />
     <ProjectReference Include="..\SQRS.Mediatr.Sample.Application\SQRS.Mediatr.Sample.Application.csproj" />
     <ProjectReference Include="..\SQRS.Mediatr.Sample.DAL\SQRS.Mediatr.Sample.DAL.csproj" />
     <ProjectReference Include="..\SQRS.Mediatr.Sample.Infrastructure\SQRS.Mediatr.Sample.Infrastructure.csproj" />

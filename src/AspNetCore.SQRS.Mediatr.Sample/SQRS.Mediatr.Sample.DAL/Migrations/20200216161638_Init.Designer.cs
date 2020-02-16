@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SQRS.Mediart.Sample.DAL;
+using SQRS.Mediatr.Sample.DAL;
 
 namespace SQRS.Mediatr.Sample.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200216161638_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -18,7 +20,7 @@ namespace SQRS.Mediatr.Sample.DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("SQRS.Mediart.Sample.DAL.Entities.Customer", b =>
+            modelBuilder.Entity("SQRS.Mediatr.Sample.DAL.Entities.Customer", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,7 +36,7 @@ namespace SQRS.Mediatr.Sample.DAL.Migrations
                     b.ToTable("customers");
                 });
 
-            modelBuilder.Entity("SQRS.Mediart.Sample.DAL.Entities.Order", b =>
+            modelBuilder.Entity("SQRS.Mediatr.Sample.DAL.Entities.Order", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -58,9 +60,9 @@ namespace SQRS.Mediatr.Sample.DAL.Migrations
                     b.ToTable("orders");
                 });
 
-            modelBuilder.Entity("SQRS.Mediart.Sample.DAL.Entities.Order", b =>
+            modelBuilder.Entity("SQRS.Mediatr.Sample.DAL.Entities.Order", b =>
                 {
-                    b.HasOne("SQRS.Mediart.Sample.DAL.Entities.Customer", "Customer")
+                    b.HasOne("SQRS.Mediatr.Sample.DAL.Entities.Customer", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
