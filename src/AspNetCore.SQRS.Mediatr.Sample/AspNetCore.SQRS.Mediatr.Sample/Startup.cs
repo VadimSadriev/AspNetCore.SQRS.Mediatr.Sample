@@ -7,6 +7,7 @@ using SQRS.Mediatr.Sample.Application;
 using SQRS.Mediatr.Sample.DAL;
 using SQRS.Mediatr.Sample.Infrastructure;
 using DiInfraType = SQRS.Mediatr.Sample.Infrastructure.DependencyInjection;
+using DiApplicationType = SQRS.Mediatr.Sample.Application.DependencyInjection;
 
 namespace AspNetCore.SQRS.Mediatr.Sample
 {
@@ -25,7 +26,7 @@ namespace AspNetCore.SQRS.Mediatr.Sample
             services.AddApplication(Configuration);
             services.AddDatabase(Configuration);
             services.AddSwagger(typeof(DiInfraType).Assembly);
-            services.AddMapper();
+            services.AddMapper(typeof(DiInfraType).Assembly, typeof(DiApplicationType).Assembly);
 
             services.AddControllers();
         }

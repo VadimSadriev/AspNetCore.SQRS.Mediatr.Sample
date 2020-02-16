@@ -11,7 +11,6 @@ using System.Reflection;
 
 namespace SQRS.Mediatr.Sample.Infrastructure
 {
-
     public static class DependencyInjection
     {
         public static IServiceCollection AddSwagger(this IServiceCollection services, params Assembly[] assembliesWithModels)
@@ -45,9 +44,9 @@ namespace SQRS.Mediatr.Sample.Infrastructure
             return app;
         }
 
-        public static IServiceCollection AddMapper(this IServiceCollection services)
+        public static IServiceCollection AddMapper(this IServiceCollection services, params Assembly[] assembliesWithProfiles)
         {
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddAutoMapper(assembliesWithProfiles);
 
             return services;
         }

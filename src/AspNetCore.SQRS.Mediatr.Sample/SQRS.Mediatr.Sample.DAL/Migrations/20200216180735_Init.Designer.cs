@@ -9,7 +9,7 @@ using SQRS.Mediatr.Sample.DAL;
 namespace SQRS.Mediatr.Sample.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200216161638_Init")]
+    [Migration("20200216180735_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,6 +44,8 @@ namespace SQRS.Mediatr.Sample.DAL.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CustomerId")
+                        .IsRequired()
+                        .HasColumnName("customer_id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
@@ -65,7 +67,8 @@ namespace SQRS.Mediatr.Sample.DAL.Migrations
                     b.HasOne("SQRS.Mediatr.Sample.DAL.Entities.Customer", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

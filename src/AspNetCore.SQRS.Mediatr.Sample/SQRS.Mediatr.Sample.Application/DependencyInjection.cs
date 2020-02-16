@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SQRS.Mediatr.Sample.Application.Customers;
 using SQRS.Mediatr.Sample.Application.Orders;
+using System.Reflection;
 
 namespace SQRS.Mediatr.Sample.Application
 {
@@ -11,6 +13,8 @@ namespace SQRS.Mediatr.Sample.Application
         {
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IOrderService, OrderService>();
+
+            services.AddMediatR(Assembly.GetExecutingAssembly());
 
             return services;
         }

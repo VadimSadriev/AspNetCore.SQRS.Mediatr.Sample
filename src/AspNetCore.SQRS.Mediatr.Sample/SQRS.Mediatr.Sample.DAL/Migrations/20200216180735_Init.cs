@@ -25,23 +25,23 @@ namespace SQRS.Mediatr.Sample.DAL.Migrations
                     id = table.Column<string>(nullable: false),
                     name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    CustomerId = table.Column<string>(nullable: true)
+                    customer_id = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_orders", x => x.id);
                     table.ForeignKey(
-                        name: "FK_orders_customers_CustomerId",
-                        column: x => x.CustomerId,
+                        name: "FK_orders_customers_customer_id",
+                        column: x => x.customer_id,
                         principalTable: "customers",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_orders_CustomerId",
+                name: "IX_orders_customer_id",
                 table: "orders",
-                column: "CustomerId");
+                column: "customer_id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

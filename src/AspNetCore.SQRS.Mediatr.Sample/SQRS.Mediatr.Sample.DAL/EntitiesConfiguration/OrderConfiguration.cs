@@ -17,6 +17,10 @@ namespace SQRS.Mediatr.Sample.DAL.EntitiesConfiguration
             builder.Property(x => x.Name)
                 .HasColumnName("name");
 
+            builder.Property(x => x.CustomerId)
+                .IsRequired()
+                .HasColumnName("customer_id");
+
             builder.HasOne(x => x.Customer)
                 .WithMany(x => x.Orders)
                 .HasForeignKey(x => x.CustomerId);
