@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SQRS.Mediatr.Sample.DAL;
 using SQRS.Mediatr.Sample.DAL.Entities;
+using SQRS.Mediatr.Sample.Infrastructure.Contracts.Customers;
 using SQRS.Mediatr.Sample.Infrastructure.Exceptions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,6 +15,27 @@ namespace SQRS.Mediatr.Sample.Application.Customers
         public CustomerService(DataContext context)
         {
             _context = context;
+        }
+
+        public async Task<Customer> Create(CustomerCreateContract customerCreateContract)
+        {
+            var newCustomer = new Customer
+            {
+                Name = customerCreateContract.Name
+            };
+
+            try
+            {
+                await _context.Customers.AddAsync(newCustomer);
+
+                await _context.SaveChangesAsync();
+
+                return await GetByIdInternal(newCustomer.Id);
+            }
+            catch (DbUpdateException ex)
+            {
+                throw new DomainException("An error occured during customer creation", ex);
+            }
         }
 
         public async Task<Customer> GetById(string id)
