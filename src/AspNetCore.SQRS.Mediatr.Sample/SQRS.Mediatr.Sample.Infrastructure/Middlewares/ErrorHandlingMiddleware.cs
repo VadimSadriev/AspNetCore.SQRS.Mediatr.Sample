@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace SQRS.Mediatr.Sample.Infrastructure.Middlewares
 {
-    public class ErroHandlingMiddleware
+    public class ErrorHandlingMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly IMapper _mapper;
 
         /// <summary> Middleware for catching and serializing all exceptions occured during request  </summary>
-        public ErroHandlingMiddleware(RequestDelegate next, IMapper mapper)
+        public ErrorHandlingMiddleware(RequestDelegate next, IMapper mapper)
         {
             _next = next;
             _mapper = mapper;

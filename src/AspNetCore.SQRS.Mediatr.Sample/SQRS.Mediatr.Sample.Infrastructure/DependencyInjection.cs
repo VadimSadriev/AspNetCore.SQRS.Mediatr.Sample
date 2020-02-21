@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -53,9 +54,16 @@ namespace SQRS.Mediatr.Sample.Infrastructure
 
         public static IApplicationBuilder AddErroHanldingMiddleWare(this IApplicationBuilder app)
         {
-            app.UseMiddleware<ErroHandlingMiddleware>();
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             return app;
+        }
+
+        public static IServiceCollection AddValidators(this IServiceCollection services, params Assembly[] assemblies)
+        {
+            services.AddValidatorsFromAssemblies(assemblies);
+
+            return services;
         }
     }
 }

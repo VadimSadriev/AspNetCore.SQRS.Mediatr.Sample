@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using FluentValidation;
+using FluentValidation.Results;
 using SQRS.Mediatr.Sample.Infrastructure.Contracts.Exception;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,14 @@ namespace SQRS.Mediatr.Sample.Infrastructure.Mapping.Profiles
         {
             CreateMap<Exception, ExceptionContract>()
                 .ForMember(x => x.Errors, o => o.MapFrom(x => MapError(x)));
+
+            CreateMap<ValidationException, ExceptionContract>();
+
+            CreateMap<ValidationFailure, ExceptionErrorContract>()
+                .ForMember(x => x.Type,
+                    x => x.MapFrom(x => x.GetType().Name))
+                .ForMember(x => x.Message,
+                    x => x.MapFrom(x => x.ErrorMessage));
         }
 
         private IEnumerable<ExceptionErrorContract> MapError(Exception ex)
